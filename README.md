@@ -38,6 +38,10 @@ NORA дозволяє:
 
 ```mermaid
 classDiagram
+    class UserDict {
+        +data: dict
+    }
+
     class Field {
         +value: any
         +__str__() str
@@ -103,19 +107,22 @@ classDiagram
         +delete_note(title: str)
     }
 
+    UserDict <|-- AddressBook
+    UserDict <|-- NoteBook
+
     Field <|-- Name
     Field <|-- Phone
     Field <|-- Email
     Field <|-- Address
     Field <|-- Birthday
 
+    AddressBook o-- Record
     Record *-- Name
     Record o-- Phone
     Record o-- Email
     Record o-- Address
     Record o-- Birthday
 
-    AddressBook o-- Record
     NoteBook o-- Note
 ```
 

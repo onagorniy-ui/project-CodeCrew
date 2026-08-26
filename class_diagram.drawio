@@ -1,0 +1,148 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0">
+  <diagram id="nora_class_diagram" name="NORA Assistant Class Diagram">
+    <mxGraphModel dx="1417" dy="784" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" background="#F8FAFC" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Title -->
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontColor=#0F172A;" value="&lt;b&gt;NORA (Recruiter Assistant) — UML Class Diagram&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="550" x="450" y="20" as="geometry" />
+        </mxCell>
+        
+        <!-- UserDict base -->
+        <mxCell id="userdict" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=1;fillColor=#F1F5F9;strokeColor=#64748B;fontColor=#0F172A;shadow=1;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;collections.UserDict&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;UserDict&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:6px;&quot;&gt;+ data: dict&lt;/p&gt;" vertex="1">
+          <mxGeometry height="60" width="220" x="610" y="80" as="geometry" />
+        </mxCell>
+        
+        <!-- AddressBook -->
+        <mxCell id="addressbook" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontColor=#0369A1;shadow=1;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;AddressBook&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:6px;&quot;&gt;+ data: dict[str, Record]&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:6px;&quot;&gt;+ add_record(record: Record): void&lt;br&gt;+ find(name: str): Record | None&lt;br&gt;+ delete(name: str): void&lt;br&gt;+ get_upcoming_birthdays(days: int): list[Record]&lt;/p&gt;" vertex="1">
+          <mxGeometry height="130" width="310" x="350" y="200" as="geometry" />
+        </mxCell>
+        
+        <!-- NoteBook -->
+        <mxCell id="notebook" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=1;fillColor=#FEF3C7;strokeColor=#D97706;fontColor=#92400E;shadow=1;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;NoteBook&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:6px;&quot;&gt;+ data: dict[str, Note]&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:6px;&quot;&gt;+ add_note(note: Note): void&lt;br&gt;+ find_note(keyword: str): list[Note]&lt;br&gt;+ search_by_tag(tag: str): list[Note]&lt;br&gt;+ sort_by_tag(): list[Note]&lt;br&gt;+ edit_note(title: str, new_text: str): void&lt;br&gt;+ delete_note(title: str): void&lt;/p&gt;" vertex="1">
+          <mxGeometry height="160" width="310" x="780" y="200" as="geometry" />
+        </mxCell>
+        
+        <!-- Record -->
+        <mxCell id="record" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=1;fillColor=#F0FDF4;strokeColor=#16A34A;fontColor=#166534;shadow=1;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Record&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:6px;&quot;&gt;+ name: Name&lt;br&gt;+ phones: list[Phone]&lt;br&gt;+ email: Email | None&lt;br&gt;+ address: Address | None&lt;br&gt;+ birthday: Birthday | None&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:6px;&quot;&gt;+ add_phone(phone: str): void&lt;br&gt;+ edit_phone(old_phone: str, new_phone: str): void&lt;br&gt;+ remove_phone(phone: str): void&lt;br&gt;+ add_birthday(birthday: str): void&lt;br&gt;+ add_email(email: str): void&lt;br&gt;+ add_address(address: str): void&lt;br&gt;+ __str__(): str&lt;/p&gt;" vertex="1">
+          <mxGeometry height="260" width="310" x="350" y="400" as="geometry" />
+        </mxCell>
+        
+        <!-- Note -->
+        <mxCell id="note" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=1;fillColor=#FFFBEB;strokeColor=#F59E0B;fontColor=#B45309;shadow=1;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Note&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:6px;&quot;&gt;+ title: str&lt;br&gt;+ text: str&lt;br&gt;+ tags: set[str]&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:6px;&quot;&gt;+ add_tag(tag: str): void&lt;br&gt;+ remove_tag(tag: str): void&lt;br&gt;+ __str__(): str&lt;/p&gt;" vertex="1">
+          <mxGeometry height="170" width="260" x="805" y="445" as="geometry" />
+        </mxCell>
+        
+        <!-- Field Base Class -->
+        <mxCell id="field" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=1;fillColor=#EEF2FF;strokeColor=#6366F1;fontColor=#4338CA;shadow=1;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Field&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:6px;&quot;&gt;+ value: any&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:6px;&quot;&gt;+ __init__(value: any)&lt;br&gt;+ __str__(): str&lt;/p&gt;" vertex="1">
+          <mxGeometry height="90" width="180" x="415" y="730" as="geometry" />
+        </mxCell>
+        
+        <!-- Field Subclasses -->
+        <mxCell id="name_class" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=11;fontFamily=Helvetica;html=1;rounded=1;fillColor=#F8FAFC;strokeColor=#94A3B8;fontColor=#334155;shadow=1;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Name&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:6px;&quot;&gt;+ value: str&lt;/p&gt;" vertex="1">
+          <mxGeometry height="55" width="140" x="40" y="890" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="phone_class" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=11;fontFamily=Helvetica;html=1;rounded=1;fillColor=#F8FAFC;strokeColor=#94A3B8;fontColor=#334155;shadow=1;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Phone&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:6px;&quot;&gt;+ валідація (10 цифр)&lt;/p&gt;" vertex="1">
+          <mxGeometry height="55" width="160" x="210" y="890" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="email_class" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=11;fontFamily=Helvetica;html=1;rounded=1;fillColor=#F8FAFC;strokeColor=#94A3B8;fontColor=#334155;shadow=1;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Email&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:6px;&quot;&gt;+ валідація (@ та .)&lt;/p&gt;" vertex="1">
+          <mxGeometry height="55" width="160" x="400" y="890" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="address_class" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=11;fontFamily=Helvetica;html=1;rounded=1;fillColor=#F8FAFC;strokeColor=#94A3B8;fontColor=#334155;shadow=1;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Address&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:6px;&quot;&gt;+ value: str&lt;/p&gt;" vertex="1">
+          <mxGeometry height="55" width="140" x="590" y="890" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="birthday_class" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=11;fontFamily=Helvetica;html=1;rounded=1;fillColor=#F8FAFC;strokeColor=#94A3B8;fontColor=#334155;shadow=1;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Birthday&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:6px;&quot;&gt;+ валідація (DD.MM.YYYY)&lt;/p&gt;" vertex="1">
+          <mxGeometry height="55" width="180" x="760" y="890" as="geometry" />
+        </mxCell>
+        
+        <!-- Inheritance: AddressBook -> UserDict -->
+        <mxCell id="edge_ab_userdict" edge="1" parent="1" source="addressbook" target="userdict" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;strokeWidth=2;strokeColor=#0284C7;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="505" y="160" />
+              <mxPoint x="680" y="160" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Inheritance: NoteBook -> UserDict -->
+        <mxCell id="edge_nb_userdict" edge="1" parent="1" source="notebook" target="userdict" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;strokeWidth=2;strokeColor=#D97706;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="935" y="160" />
+              <mxPoint x="760" y="160" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Composition: AddressBook -> Record -->
+        <mxCell id="edge_ab_record" edge="1" parent="1" source="addressbook" target="record" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;startArrow=diamondThin;startFill=1;endArrow=open;strokeWidth=2;strokeColor=#0284C7;fontColor=#0284C7;" value="1..*">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Composition: NoteBook -> Note -->
+        <mxCell id="edge_nb_note" edge="1" parent="1" source="notebook" target="note" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;startArrow=diamondThin;startFill=1;endArrow=open;strokeWidth=2;strokeColor=#D97706;fontColor=#D97706;" value="0..*">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Dependency / Aggregation: Record -> Field -->
+        <mxCell id="edge_record_field" edge="1" parent="1" source="record" target="field" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;strokeWidth=1.5;strokeColor=#16A34A;fontColor=#16A34A;" value="містить поля">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Inheritance from Field to subclasses -->
+        <mxCell id="e_fn" edge="1" parent="1" source="name_class" target="field" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;strokeWidth=1.5;strokeColor=#6366F1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="110" y="850" />
+              <mxPoint x="505" y="850" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="e_fp" edge="1" parent="1" source="phone_class" target="field" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;strokeWidth=1.5;strokeColor=#6366F1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="290" y="850" />
+              <mxPoint x="505" y="850" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="e_fe" edge="1" parent="1" source="email_class" target="field" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;strokeWidth=1.5;strokeColor=#6366F1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="850" />
+              <mxPoint x="505" y="850" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="e_fa" edge="1" parent="1" source="address_class" target="field" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;strokeWidth=1.5;strokeColor=#6366F1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="660" y="850" />
+              <mxPoint x="505" y="850" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="e_fb" edge="1" parent="1" source="birthday_class" target="field" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;strokeWidth=1.5;strokeColor=#6366F1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="850" y="850" />
+              <mxPoint x="505" y="850" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

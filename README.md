@@ -24,8 +24,8 @@
 
 1. Клонуємо репозиторій:
 ```bash
-git clone https://github.com/onagorniy-ui/project-python-2.git
-cd project-python-2
+git clone https://github.com/onagorniy-ui/project-CodeCrew.git
+cd project-CodeCrew
 ```
 
 2. Створюємо та активуємо віртуальне середовище:

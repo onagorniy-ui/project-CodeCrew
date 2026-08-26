@@ -22,3 +22,6 @@ env/
 
 # Environment variables
 .env
+
+#Pull requests list
+pullrequests-list.txt

@@ -12,7 +12,7 @@ def parse_input(user_input):
     cmd = cmd.strip().lower()
     return cmd, *args
 
-# ffff
+
 def main():
     filename = "data.pkl"
     book, notebook = load_data(filename)

@@ -1,6 +1,6 @@
 import os
 from colorama import Fore, Style, init
-from commands import add_contact, add_note
+from commands import add_contact, add_note, show_help
 from storage import load_data, save_data
 
 # ініціалізація colorama (autoreset=True автоматично скидає колір після кожного виводу)
@@ -27,8 +27,11 @@ def main():
     else:
         print(f"{Fore.BLUE}Welcome to the assistant bot!\nYour data was loaded successfully.")
 
+    # відображаємо список доступних команд
+    print(f"\n{show_help()}")
+
     while True:
-        user_input = input(f"{Style.BRIGHT}Enter a command: ")
+        user_input = input(f"{Fore.BLUE}Enter a command: ")
         if not user_input.strip():
             continue
 
@@ -36,7 +39,7 @@ def main():
 
         if command in ["close", "exit"]:
             save_data(book, notebook)
-            print(f"{Fore.GREEN}Good bye!")
+            print(f"{Fore.BLUE}Good bye!")
             break
 
         elif command == "hello":
@@ -47,6 +50,9 @@ def main():
 
         elif command == "add-note":
             print(add_note(args, notebook))
+        
+        elif command == "help":
+            print(show_help())
 
         # todo: додати гілки elif для всіх інших команд
         # todo: додати сюди "інтелектуальний аналіз" (вгадування команди)

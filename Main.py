@@ -28,10 +28,10 @@ def main():
         print(f"{Fore.BLUE}Welcome to the assistant bot!\nYour data was loaded successfully.")
 
     # відображаємо список доступних команд
-    print(f"\n{show_help()}")
+    print(f"{Fore.BLUE}Here is the list of available commands:{Fore.RESET}\n{show_help()}")
 
     while True:
-        user_input = input(f"{Fore.BLUE}Enter a command: ")
+        user_input = input(f"Enter a command: ")
         if not user_input.strip():
             continue
 
@@ -52,13 +52,13 @@ def main():
             print(add_note(args, notebook))
         
         elif command == "help":
-            print(show_help())
+            print(f"{Fore.BLUE}{show_help()}{Fore.RESET}")
 
         # todo: додати гілки elif для всіх інших команд
         # todo: додати сюди "інтелектуальний аналіз" (вгадування команди)
 
-        else:
-            print(f"{Fore.RED}Invalid command.")
+        else:  # якщо команда не є жодною з вищезазначених
+            print(f"{Fore.RED}Invalid command, type 'help'.{Fore.RESET}")
 
 
 if __name__ == "__main__":

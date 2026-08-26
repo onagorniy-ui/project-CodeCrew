@@ -84,6 +84,14 @@ class Record:
     def add_address(self, address):
         self.address = Address(address)
 
+    def __str__(self):
+        phones = ", ".join(p.value for p in self.phones) if self.phones else "немає"
+        email = self.email.value if self.email else "немає"
+        address = self.address.value if self.address else "немає"
+        birthday = self.birthday.value if self.birthday else "немає"
+        return f"Ім'я: {self.name.value}, Телефони: {phones}, Email: {email}, Адреса: {address}, День народження: {birthday}"
+
+
 
 # книга контактів
 class AddressBook(UserDict):
@@ -113,7 +121,9 @@ class AddressBook(UserDict):
                 birthday_this_year = birthday_date.replace(year=today.year)
             except ValueError:
                 # 29 лютого у невисокосному році, переносимо на 28 лютого
-                birthday_this_year = birthday_date.replace(year=today.year, day=28, month=2)
+                birthday_this_year = birthday_date.replace(
+                    year=today.year, day=28, month=2
+                )
 
             if birthday_this_year < today:
                 birthday_this_year = birthday_this_year.replace(year=today.year + 1)
@@ -150,7 +160,9 @@ class NoteBook(UserDict):
         self.data[note.title] = note
 
     def find_note(self, keyword):
-        return [note for note in self.data.values() if keyword.lower() in note.text.lower()]
+        return [
+            note for note in self.data.values() if keyword.lower() in note.text.lower()
+        ]
 
     def search_by_tag(self, tag):
         return [note for note in self.data.values() if tag in note.tags]

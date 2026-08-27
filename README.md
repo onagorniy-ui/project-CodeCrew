@@ -39,11 +39,11 @@ NORA дозволяє:
 ```mermaid
 classDiagram
     class UserDict {
-        +data: dict
+        +dict data
     }
 
     class Field {
-        +value: any
+        +any value
         +__str__() str
     }
 
@@ -51,60 +51,61 @@ classDiagram
     }
 
     class Phone {
-        +__init__(value: str)
+        +__init__(str value)
     }
 
     class Email {
-        +__init__(value: str)
+        +__init__(str value)
     }
 
     class Address {
     }
 
     class Birthday {
-        +__init__(value: str)
+        +__init__(str value)
     }
 
     class Record {
-        +name: Name
-        +phones: list~Phone~
-        +email: Email
-        +address: Address
-        +birthday: Birthday
-        +add_phone(phone: str)
-        +edit_phone(old_phone: str, new_phone: str)
-        +remove_phone(phone: str)
-        +add_birthday(birthday: str)
-        +add_email(email: str)
-        +add_address(address: str)
+        +Name name
+        +list phones
+        +Email email
+        +Address address
+        +Birthday birthday
+        +add_phone(str phone)
+        +edit_phone(str old_phone, str new_phone)
+        +remove_phone(str phone)
+        +add_birthday(str birthday)
+        +add_email(str email)
+        +add_address(str address)
         +__str__() str
     }
 
     class AddressBook {
-        +data: dict~str, Record~
-        +add_record(record: Record)
-        +find(name: str) Record
-        +delete(name: str)
-        +get_upcoming_birthdays(days: int) list~Record~
+        +dict data
+        +add_record(Record record)
+        +find(str name) Record
+        +delete(str name)
+        +search(str query) list
+        +get_upcoming_birthdays(int days) list
     }
 
     class Note {
-        +title: str
-        +text: str
-        +tags: set~str~
-        +add_tag(tag: str)
-        +remove_tag(tag: str)
+        +str title
+        +str text
+        +set tags
+        +add_tag(str tag)
+        +remove_tag(str tag)
         +__str__() str
     }
 
     class NoteBook {
-        +data: dict~str, Note~
-        +add_note(note: Note)
-        +find_note(keyword: str) list~Note~
-        +search_by_tag(tag: str) list~Note~
-        +sort_by_tag() list~Note~
-        +edit_note(title: str, new_text: str)
-        +delete_note(title: str)
+        +dict data
+        +add_note(Note note)
+        +find_note(str keyword) list
+        +search_by_tag(str tag) list
+        +sort_by_tag() list
+        +edit_note(str title, str new_text)
+        +delete_note(str title)
     }
 
     UserDict <|-- AddressBook

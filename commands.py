@@ -199,7 +199,95 @@ def search_contacts(args, book: AddressBook):
     return f"{Fore.BLUE}" + "\n".join(str(record) for record in results)
 
 
-# функції-обробники команд для нотаток (завдання Ярослави Журіхіної)
-# todo: реалізувати функції для нотаток (add_note, edit_note, delete_note, add_tag, find_note, find_tag, sort_notes, show_all_notes)
+# функції-обробники команд для нотаток
+
+# функція додавання нотатки
+@input_error
+def add_note(args, notebook: NoteBook):
+    if len(args) < 2:
+        raise ValueError("Вкажіть назву та текст нотатки (наприклад: add-note Python Senior розробник).")
+    title = args[0]
+    text = " ".join(args[1:])
+    note = Note(title, text)
+    notebook.add_note(note)
+    return f"{Fore.BLUE}Нотатку '{title}' успішно створено."
 
 
+# функція редагування нотатки
+@input_error
+def edit_note(args, notebook: NoteBook):
+    if len(args) < 2:
+        raise ValueError("Вкажіть назву та новий текст (наприклад: edit-note Python Lead розробник).")
+    title = args[0]
+    new_text = " ".join(args[1:])
+    notebook.edit_note(title, new_text)
+    return f"{Fore.BLUE}Текст нотатки '{title}' успішно змінено."
+
+
+# функція видалення нотатки
+@input_error
+def delete_note(args, notebook: NoteBook):
+    if not args:
+        raise ValueError("Вкажіть назву нотатки (наприклад: delete-note Python).")
+    title = args[0]
+    notebook.delete_note(title)
+    return f"{Fore.BLUE}Нотатку '{title}' успішно видалено."
+
+
+# функція додавання тегу
+@input_error
+def add_tag(args, notebook: NoteBook):
+    if len(args) < 2:
+        raise ValueError("Вкажіть назву нотатки та тег (наприклад: add-tag Python #senior).")
+    title, raw_tag = args[0], args[1]
+    if title not in notebook.data:
+        raise KeyError(f"Нотатку '{title}' не знайдено.")
+    if not raw_tag.startswith("#"):
+        raise ValueError("Тег обов'язково має починатися зі знаку '#' (наприклад: add-tag Python #backend).")
+    tag = raw_tag.lstrip("#").strip().lower()
+    if not tag:
+        raise ValueError("Тег не може бути порожнім після знаку '#'.")
+    note = notebook.data[title]
+    note.add_tag(tag)
+    return f"{Fore.BLUE}Тег '#{tag}' додано до нотатки '{title}'."
+
+
+# функція пошуку нотаток за ключовими словами
+@input_error
+def find_note(args, notebook: NoteBook):
+    if not args:
+        raise ValueError("Вкажіть слово для пошуку (наприклад: find-note senior).")
+    keyword = " ".join(args)
+    results = notebook.find_note(keyword)
+    if not results:
+        return f"{Fore.YELLOW}Нотаток за запитом '{keyword}' не знайдено."
+    return f"{Fore.BLUE}" + "\n---\n".join(str(note) for note in results)
+
+
+# функція пошуку нотаток за тегом
+@input_error
+def find_tag(args, notebook: NoteBook):
+    if not args or not args[0].strip().lstrip("#"):
+        raise ValueError("Вкажіть тег для пошуку (наприклад: #python або find-tag python).")
+    tag = args[0].lstrip("#").strip().lower()
+    results = notebook.search_by_tag(tag)
+    if not results:
+        return f"{Fore.YELLOW}Нотаток з тегом '#{tag}' не знайдено."
+    return f"{Fore.BLUE}" + "\n---\n".join(str(note) for note in results)
+
+
+# функція сортування нотаток за тегами
+@input_error
+def sort_notes(notebook: NoteBook):
+    results = notebook.sort_by_tag()
+    if not results:
+        return f"{Fore.YELLOW}Блокнот порожній."
+    return f"{Fore.BLUE}" + "\n---\n".join(str(note) for note in results)
+
+
+# функція показу всіх нотаток
+@input_error
+def show_all_notes(notebook: NoteBook):
+    if not notebook.data:
+        return f"{Fore.YELLOW}Блокнот порожній."
+    return f"{Fore.BLUE}" + "\n---\n".join(str(note) for note in notebook.data.values())

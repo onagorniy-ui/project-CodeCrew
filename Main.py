@@ -1,6 +1,13 @@
 # імпортуємо бібліотеки, класи та функції
 import difflib
 import os
+
+try:
+    import readline  # підтримка історії команд через стрілки
+except ImportError:
+    pass  # якщо бібліотека недоступна, програма продовжить працювати
+
+
 from colorama import Fore, Style, init
 from commands import (
     add_address,

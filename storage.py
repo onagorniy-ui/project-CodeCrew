@@ -20,7 +20,13 @@ def load_data(filename="data.pkl"):
         with open(filename, "rb") as file:
             data = pickle.load(file)
 
-        return data["book"], data["notebook"]
+        if isinstance(data, dict):
+            return data["book"], data["notebook"]
+
+        if isinstance(data, tuple) and len(data) == 2:
+            return data[0], data[1]
+
+        return data, NoteBook()
 
     except (
         FileNotFoundError,

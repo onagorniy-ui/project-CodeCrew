@@ -189,3 +189,19 @@ python Main.py
   `git commit -m "опис того що зробили"`
   `git push -u origin feature/назва-задачі`
 - На GitHub створюємо Pull Request, проводимо рев'ю (Code Review) і зливаємо зміни в `main`.
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+  window.addEventListener('DOMContentLoaded', async () => {
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid, pre code.mermaid');
+    for (const block of codeBlocks) {
+      const pre = block.parentElement;
+      const container = document.createElement('div');
+      container.className = 'mermaid';
+      container.textContent = block.textContent;
+      pre.replaceWith(container);
+    }
+    await mermaid.run();
+  });
+</script>

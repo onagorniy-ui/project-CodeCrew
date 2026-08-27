@@ -43,9 +43,9 @@ delete-contact [name] - видалити контакт
 add-note [title] [text] - створити нову нотатку
 edit-note [title] [new_text] - змінити текст нотатки
 delete-note [title] - видалити нотатку
-add-tag [title] [tag] - додати тег до нотатки
+add-tag [title] #[tag] - додати тег до нотатки (наприклад: add-tag Python #backend)
 find-note [text] - знайти нотатки за текстом
-find-tag [tag] - знайти нотатки за тегом
+#[tag], find-tag [tag] - пошук нотаток за тегом (наприклад: #dev або find-tag python)
 sort-notes - показати нотатки, посортовані за тегами
 all-notes - показати всі збережені нотатки
 
@@ -238,10 +238,15 @@ def delete_note(args, notebook: NoteBook):
 @input_error
 def add_tag(args, notebook: NoteBook):
     if len(args) < 2:
-        raise ValueError("Вкажіть назву нотатки та тег (наприклад: add-tag Python senior).")
-    title, tag = args[0], args[1]
+        raise ValueError("Вкажіть назву нотатки та тег (наприклад: add-tag Python #senior).")
+    title, raw_tag = args[0], args[1]
     if title not in notebook.data:
         raise KeyError(f"Нотатку '{title}' не знайдено.")
+    if not raw_tag.startswith("#"):
+        raise ValueError("Тег обов'язково має починатися зі знаку '#' (наприклад: add-tag Python #backend).")
+    tag = raw_tag.lstrip("#").strip().lower()
+    if not tag:
+        raise ValueError("Тег не може бути порожнім після знаку '#'.")
     note = notebook.data[title]
     note.add_tag(tag)
     return f"{Fore.BLUE}Тег '#{tag}' додано до нотатки '{title}'."
@@ -262,9 +267,9 @@ def find_note(args, notebook: NoteBook):
 # функція пошуку нотаток за тегом
 @input_error
 def find_tag(args, notebook: NoteBook):
-    if not args:
-        raise ValueError("Вкажіть тег для пошуку (наприклад: find-tag python).")
-    tag = args[0]
+    if not args or not args[0].strip().lstrip("#"):
+        raise ValueError("Вкажіть тег для пошуку (наприклад: #python або find-tag python).")
+    tag = args[0].lstrip("#").strip().lower()
     results = notebook.search_by_tag(tag)
     if not results:
         return f"{Fore.YELLOW}Нотаток з тегом '#{tag}' не знайдено."

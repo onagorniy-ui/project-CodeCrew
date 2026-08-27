@@ -1,17 +1,30 @@
 import pickle
+
 from classes import AddressBook, NoteBook
 
 
 def save_data(book, notebook, filename="data.pkl"):
-    """реалізувати збереження обох книг на диск."""
-    # todo: реалізувати збереження обох книг на диск
-    pass
+    """Зберігає книгу контактів і книгу нотаток у файл."""
+    data = {
+        "book": book,
+        "notebook": notebook,
+    }
+
+    with open(filename, "wb") as file:
+        pickle.dump(data, file)
 
 
 def load_data(filename="data.pkl"):
-    """реалізувати завантаження. якщо файлу немає, повертати нові AddressBook та NoteBook."""
-    # todo: реалізувати завантаження. якщо файлу немає, повертати нові AddressBook та NoteBook та не забути реалізуівати обробку помилок
-    return AddressBook(), NoteBook()
+    """Завантажує дані або повертає нові порожні книги."""
+    try:
+        with open(filename, "rb") as file:
+            data = pickle.load(file)
 
-    # except (FileNotFoundError, pickle.UnpicklingError, EOFError): # обробка помилок: файл не знайдено, файл пошкоджено, файл порожній
-    #     return AddressBook(), NoteBook()
+        return data["book"], data["notebook"]
+
+    except (
+        FileNotFoundError,
+        EOFError,
+        pickle.UnpicklingError,
+    ):
+        return AddressBook(), NoteBook()

@@ -155,13 +155,13 @@ class Note:
     def __init__(self, title, text, tags=None):
         self.title = title
         self.text = text
-        self.tags = set(tags) if tags else set()
+        self.tags = {t.lstrip("#").strip().lower() for t in tags} if tags else set()
 
     def add_tag(self, tag):
-        self.tags.add(tag)
+        self.tags.add(tag.lstrip("#").strip().lower())
 
     def remove_tag(self, tag):
-        self.tags.discard(tag)
+        self.tags.discard(tag.lstrip("#").strip().lower())
 
     def __str__(self):
         tags = ", ".join(f"#{t}" for t in sorted(self.tags)) if self.tags else "немає"  # теги як хештеги
@@ -175,12 +175,15 @@ class NoteBook(UserDict):
         self.data[note.title] = note
 
     def find_note(self, keyword):
+        kw = keyword.lower().strip()
         return [
-            note for note in self.data.values() if keyword.lower() in note.text.lower()
+            note for note in self.data.values()
+            if kw in note.text.lower() or kw in note.title.lower()
         ]
 
     def search_by_tag(self, tag):
-        return [note for note in self.data.values() if tag in note.tags]
+        clean_tag = tag.lstrip("#").strip().lower()
+        return [note for note in self.data.values() if clean_tag in note.tags]
 
     def sort_by_tag(self):
         # сортування за списком тегів кожної нотатки в алфавітному порядку

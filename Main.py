@@ -171,6 +171,12 @@ def main():
         elif command == "find-note":
             print(find_note(args, notebook))
 
+        # швидкий пошук за тегом прямо через хештег (наприклад: #dev або #python)
+        elif command.startswith("#"):
+            tag = command.lstrip("#")
+            tag_to_search = tag if tag else (args[0] if args else "")
+            print(find_tag([tag_to_search], notebook))
+
         elif command in ["find-tag", "search-by-tag"]:
             print(find_tag(args, notebook))
 

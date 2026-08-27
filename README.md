@@ -41,8 +41,7 @@ NORA дозволяє:
 <details>
 <summary><b>Натисніть тут, щоб переглянути текстову Mermaid-схему</b></summary>
 
-```mermaid
-classDiagram
+<pre><code>classDiagram
     class UserDict {
         +dict data
     }
@@ -113,14 +112,14 @@ classDiagram
         +delete_note(str title)
     }
 
-    UserDict <|-- AddressBook
-    UserDict <|-- NoteBook
+    UserDict &lt;|-- AddressBook
+    UserDict &lt;|-- NoteBook
 
-    Field <|-- Name
-    Field <|-- Phone
-    Field <|-- Email
-    Field <|-- Address
-    Field <|-- Birthday
+    Field &lt;|-- Name
+    Field &lt;|-- Phone
+    Field &lt;|-- Email
+    Field &lt;|-- Address
+    Field &lt;|-- Birthday
 
     AddressBook o-- Record
     Record *-- Name
@@ -129,9 +128,7 @@ classDiagram
     Record o-- Address
     Record o-- Birthday
 
-    NoteBook o-- Note
-```
-
+    NoteBook o-- Note</code></pre>
 </details>
 
 ## Список доступних команд
@@ -143,6 +140,7 @@ classDiagram
 - `change [ім'я] [старий_номер] [новий_номер]` — змінити номер телефону контакту.
 - `phone [ім'я]` — показати всі номери телефону контакту.
 - `all` — показати всіх кандидатів з усіма збереженими полями.
+- `search [запит]` — пошук контактів за ім'ям, телефоном, email або адресою.
 - `add-birthday [ім'я] [DD.MM.YYYY]` — додати дату народження контакту.
 - `show-birthday [ім'я]` — показати дату народження контакту.
 - `birthdays [дні]` — показати найближчі дні народження (за замовчуванням: 7 днів).
@@ -159,8 +157,9 @@ classDiagram
 - `find-tag [тег]` (або `search-by-tag`) — знайти всі нотатки за вказаним тегом.
 - `sort-notes` — вивести всі нотатки, відсортовані за тегами в алфавітному порядку.
 - `all-notes` (або `show-notes`) — показати всі збережені нотатки.
-- `close`, `exit` — завершити роботу та зберегти всі дані у файл на диску.
 
+### Завершення роботи:
+- `close`, `exit` — завершити роботу та зберегти всі дані у файл на диску.
 
 ## Як запустити проєкт
 
@@ -197,19 +196,3 @@ python Main.py
   `git commit -m "опис того що зробили"`
   `git push -u origin feature/назва-задачі`
 - На GitHub створюємо Pull Request, проводимо рев'ю (Code Review) і зливаємо зміни в `main`.
-
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
-  window.addEventListener('DOMContentLoaded', async () => {
-    const codeBlocks = document.querySelectorAll('pre code.language-mermaid, pre code.mermaid');
-    for (const block of codeBlocks) {
-      const pre = block.parentElement;
-      const container = document.createElement('div');
-      container.className = 'mermaid';
-      container.textContent = block.textContent;
-      pre.replaceWith(container);
-    }
-    await mermaid.run();
-  });
-</script>

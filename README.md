@@ -30,6 +30,7 @@ NORA дозволяє:
 ├── commands.py           # Функції-обробники команд бота та декоратор @input_error
 ├── storage.py            # Логіка збереження та завантаження даних через pickle
 ├── class_diagram.drawio  # UML-діаграма класів (для відкриття на diagrams.net)
+├── uml_diagram.svg       # Векторна схема архітектури класів
 ├── LICENSE               # Ліцензія проєкту (MIT)
 ├── requirements.txt      # Зовнішні залежності (colorama)
 └── README.md             # Документація проєкту та інструкція

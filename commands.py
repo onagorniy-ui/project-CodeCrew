@@ -8,13 +8,13 @@ def input_error(func):
         try:
             return func(*args, **kwargs)
         except ValueError as e:
-            return f"{Fore.RED}ValueError: {e}"
+            return f"{Fore.RED}{e}"
         except KeyError as e:
-            return f"{Fore.RED}KeyError: {e}"
+            return f"{Fore.RED}{e}"
         except IndexError:
-            return f"{Fore.RED}IndexError: не вистачає аргументів для команди."
+            return f"{Fore.RED}Не вистачає аргументів для команди."
         except Exception as e:
-            return f"{Fore.RED}Error: {e}"
+            return f"{Fore.RED}{e}"
 
     return inner
 

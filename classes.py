@@ -134,18 +134,18 @@ class AddressBook(UserDict):
 
         return upcoming
 
+    # пошук контактів за фрагментом тексту в імені, телефоні, email або адресі
     def search(self, query: str):
-        """Шукає всі контакти, які містять query в імені, телефоні, email чи адресі."""
         q = query.lower().strip()
         results = []
         for record in self.data.values():
-            if q in record.name.value.lower():
+            if q in record.name.value.lower():  # збіг по імені
                 results.append(record)
-            elif any(q in p.value for p in record.phones):
+            elif any(q in p.value for p in record.phones):  # збіг по телефону
                 results.append(record)
-            elif record.email and q in record.email.value.lower():
+            elif record.email and q in record.email.value.lower():  # збіг по email
                 results.append(record)
-            elif record.address and q in record.address.value.lower():
+            elif record.address and q in record.address.value.lower():  # збіг по адресі
                 results.append(record)
         return results
 
@@ -164,7 +164,7 @@ class Note:
         self.tags.discard(tag)
 
     def __str__(self):
-        tags = ", ".join(f"#{t}" for t in sorted(self.tags)) if self.tags else "немає"
+        tags = ", ".join(f"#{t}" for t in sorted(self.tags)) if self.tags else "немає"  # теги як хештеги
         return f"Назва: {self.title}\nТекст: {self.text}\nТеги: {tags}"
 
 

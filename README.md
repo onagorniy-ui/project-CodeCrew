@@ -29,6 +29,7 @@ NORA дозволяє:
 ├── classes.py            # Класи даних (AddressBook, Record, NoteBook, Note, поля)
 ├── commands.py           # Функції-обробники команд бота та декоратор @input_error
 ├── storage.py            # Логіка збереження та завантаження даних через pickle
+├── tests.py              # Автоматичні юніт-тести (unittest)
 ├── class_diagram.drawio  # UML-діаграма класів (для відкриття на diagrams.net)
 ├── uml_diagram.svg       # Векторна схема архітектури класів
 ├── LICENSE               # Ліцензія проєкту (MIT)
@@ -186,6 +187,13 @@ pip install -r requirements.txt
 4. Запускаємо помічника NORA:
 ```bash
 python Main.py
+```
+
+## Запуск автоматичних тестів
+
+Для перевірки коректності роботи всіх компонентів виконайте команду:
+```bash
+python -m unittest -v tests.py
 ```
 
 ## Як ми працюємо в команді з Git

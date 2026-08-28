@@ -10,8 +10,11 @@ def save_data(book, notebook, filename="data.pkl"):
         "notebook": notebook,
     }
 
-    with open(filename, "wb") as file:
-        pickle.dump(data, file)
+    try:
+        with open(filename, "wb") as file:
+            pickle.dump(data, file)
+    except Exception as e:
+        print(f"Помилка при збереженні даних у файл '{filename}': {e}")
 
 
 def load_data(filename="data.pkl"):
@@ -21,16 +24,20 @@ def load_data(filename="data.pkl"):
             data = pickle.load(file)
 
         if isinstance(data, dict):
-            return data["book"], data["notebook"]
+            return data.get("book", AddressBook()), data.get("notebook", NoteBook())
 
         if isinstance(data, tuple) and len(data) == 2:
             return data[0], data[1]
 
-        return data, NoteBook()
+        if isinstance(data, AddressBook):
+            return data, NoteBook()
+
+        return AddressBook(), NoteBook()
 
     except (
         FileNotFoundError,
         EOFError,
         pickle.UnpicklingError,
+        Exception,
     ):
         return AddressBook(), NoteBook()

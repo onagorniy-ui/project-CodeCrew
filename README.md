@@ -30,6 +30,7 @@ NORA дозволяє:
 ├── commands.py           # Функції-обробники команд бота та декоратор @input_error
 ├── storage.py            # Логіка збереження та завантаження даних через pickle
 ├── tests.py              # Автоматичні юніт-тести (unittest)
+├── setup.py              # Інсталятор пакету в систему (консольна команда nora)
 ├── class_diagram.drawio  # UML-діаграма класів (для відкриття на diagrams.net)
 ├── uml_diagram.svg       # Векторна схема архітектури класів
 ├── LICENSE               # Ліцензія проєкту (MIT)
@@ -179,15 +180,17 @@ source .venv/bin/activate  # для macOS / Linux
 # .venv\Scripts\activate   # для Windows
 ```
 
-3. Встановлюємо залежності:
+3. Встановлюємо пакет у систему:
 ```bash
-pip install -r requirements.txt
+pip install .
 ```
 
-4. Запускаємо помічника NORA:
+4. Запускаємо помічника NORA (з будь-якого місця терміналу):
 ```bash
-python Main.py
+nora
 ```
+
+*(Або прямий запуск скрипта без встановлення: `pip install -r requirements.txt` та `python Main.py`)*
 
 ## Запуск автоматичних тестів
 

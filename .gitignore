@@ -23,5 +23,10 @@ env/
 # Environment variables
 .env
 
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
 #Pull requests list
 pullrequests-list.txt
